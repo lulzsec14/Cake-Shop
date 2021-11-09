@@ -33,34 +33,34 @@ const orderCake = async (req, res, next) => {
   }
 };
 
-const registerAdmin = async (req, res, next) => {
-  const { username, password } = req.body;
+// const registerAdmin = async (req, res, next) => {
+//   const { username, password } = req.body;
 
-  const hashedPassword = textToHash(password);
+//   const hashedPassword = textToHash(password);
 
-  try {
-    const findAdmin = await admin.findOne({ username });
-    if (findAdmin) {
-      res.status(401).json({
-        success: false,
-        error: 'Admin with this username already exists!',
-      });
-    } else {
-      console.log(hashedPassword);
-      const newAdmin = new admin({
-        username,
-        password: hashedPassword,
-      });
-      const isValidated = await newAdmin.validate();
-      const insertedNewAdmin = await newAdmin.save();
+//   try {
+//     const findAdmin = await admin.findOne({ username });
+//     if (findAdmin) {
+//       res.status(401).json({
+//         success: false,
+//         error: 'Admin with this username already exists!',
+//       });
+//     } else {
+//       console.log(hashedPassword);
+//       const newAdmin = new admin({
+//         username,
+//         password: hashedPassword,
+//       });
+//       const isValidated = await newAdmin.validate();
+//       const insertedNewAdmin = await newAdmin.save();
 
-      res.status(210).json({ success: true, data: insertedNewAdmin });
-    }
-  } catch (err) {
-    // console.log(err);
-    res.status(500).json({ success: false, error: err.message });
-  }
-};
+//       res.status(210).json({ success: true, data: insertedNewAdmin.username });
+//     }
+//   } catch (err) {
+//     // console.log(err);
+//     res.status(500).json({ success: false, error: err.message });
+//   }
+// };
 
 const getAllOrders = async (req, res, next) => {
   const { username, password } = req.body;
@@ -91,7 +91,7 @@ const getAllOrders = async (req, res, next) => {
 // Routes
 router.route('/orderCake').post(orderCake);
 router.route('/getAllOrders').get(getAllOrders);
-router.route('/registerAdmin').post(registerAdmin);
+// router.route('/registerAdmin').post(registerAdmin);
 // ------------------------------------
 
 // Exports
