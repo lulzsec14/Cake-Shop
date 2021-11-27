@@ -90,7 +90,7 @@ const getAllOrders = async (req, res, next) => {
 
 // Routes
 router.route('/orderCake').post(orderCake);
-router.route('/getAllOrders').get(getAllOrders);
+router.route('/getAllOrders').post(getAllOrders);
 // router.route('/registerAdmin').post(registerAdmin);
 // ------------------------------------
 
